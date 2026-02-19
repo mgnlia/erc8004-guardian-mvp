@@ -1,0 +1,66 @@
+name: Vercel Deploy
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - "DEPLOYMENT_URL.txt"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install Vercel CLI
+        run: npm install -g vercel@latest
+
+      - name: Deploy to Vercel (production)
+        id: vercel
+        shell: bash
+        env:
+          SECRET_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VAR_TOKEN: ${{ vars.VERCEL_TOKEN }}
+        run: |
+          set -euo pipefail
+
+          TOKEN="${SECRET_TOKEN}"
+          if [ -z "$TOKEN" ]; then
+            TOKEN="${VAR_TOKEN}"
+          fi
+
+          if [ -z "$TOKEN" ]; then
+            echo "VERCEL_TOKEN is missing in repository secrets/variables." >&2
+            exit 1
+          fi
+
+          DEPLOY_OUTPUT=$(vercel deploy --prod --yes --token "$TOKEN" --name erc8004-guardian-mvp 2>&1 | tee /tmp/vercel-deploy.log)
+          DEPLOY_URL=$(echo "$DEPLOY_OUTPUT" | grep -Eo 'https://[a-zA-Z0-9.-]+\.vercel\.app' | tail -n 1 || true)
+
+          if [ -z "$DEPLOY_URL" ]; then
+            echo "Failed to capture deployment URL from Vercel output." >&2
+            cat /tmp/vercel-deploy.log >&2
+            exit 1
+          fi
+
+          echo "$DEPLOY_URL" > DEPLOYMENT_URL.txt
+          echo "url=$DEPLOY_URL" >> "$GITHUB_OUTPUT"
+
+      - name: Commit deployment URL
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: update Vercel production URL [skip ci]"
+          file_pattern: DEPLOYMENT_URL.txt
+
+      - name: Print deployment URL
+        run: echo "Deployed URL => ${{ steps.vercel.outputs.url }}"
