@@ -1,0 +1,32 @@
+{
+  "modelType": "linear_regression",
+  "target": "realizedDrawdownPct",
+  "features": [
+    "volatility",
+    "volatilitySquared",
+    "maxLossPct"
+  ],
+  "coefficients": {
+    "intercept": 0.92,
+    "volatility": 31.4,
+    "volatilitySquared": 12.8,
+    "maxLossPct": -0.21
+  },
+  "metrics": {
+    "mae": 0.63,
+    "rmse": 0.79,
+    "r2": 0.91,
+    "trainRows": 80,
+    "testRows": 20
+  },
+  "training": {
+    "source": "ml/data/training_data.csv",
+    "split": "time-order holdout (80/20)",
+    "algorithm": "batch gradient descent",
+    "epochs": 12000,
+    "learningRate": 0.015,
+    "featureScaling": "z-score"
+  },
+  "generatedBy": "ml/train_linear_model.py",
+  "generatedAt": "2026-02-19T21:30:00.000Z"
+}
