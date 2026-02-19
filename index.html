@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ERC-8004 Guardian MVP</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header>
+        <h1>ERC-8004 Guardian</h1>
+        <p class="subtitle">Capital-protection AI agent simulator for DeFi portfolios</p>
+      </header>
+
+      <section class="card">
+        <h2>Risk Simulator</h2>
+        <label for="capital">Initial Capital (USDC)</label>
+        <input id="capital" type="number" value="10000" min="100" step="100" />
+
+        <label for="maxLoss">Max Daily Loss Bound (%)</label>
+        <input id="maxLoss" type="number" value="2" min="0.1" max="20" step="0.1" />
+
+        <label for="volatility">Market Volatility (0-1)</label>
+        <input id="volatility" type="number" value="0.35" min="0" max="1" step="0.01" />
+
+        <button id="runBtn">Run Simulation</button>
+      </section>
+
+      <section class="card">
+        <h2>Decision</h2>
+        <div id="decision">Run simulation to evaluate constraints.</div>
+      </section>
+
+      <section class="card">
+        <h2>Constraint Report (ERC-8004-style attestation)</h2>
+        <pre id="attestation"></pre>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
