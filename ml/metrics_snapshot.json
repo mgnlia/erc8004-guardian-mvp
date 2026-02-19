@@ -1,0 +1,13 @@
+{
+  "generatedAt": "2026-02-19T21:40:00.000Z",
+  "dataset": "ml/data/training_data.csv",
+  "split": "time-order holdout (80/20)",
+  "metrics": {
+    "mae": 0.0,
+    "rmse": 0.0,
+    "r2": 1.0,
+    "trainRows": 74,
+    "testRows": 19
+  },
+  "notes": "Synthetic monotonic dataset for MVP baseline. Replace with real market telemetry before final submission."
+}
