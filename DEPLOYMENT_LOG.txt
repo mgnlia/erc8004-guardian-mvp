@@ -5,34 +5,23 @@ Vercel CLI 50.20.0
 > https://vercel.com/docs/cli/about-telemetry
 Loading scopes…
 Searching for existing projects…
-> No framework detected. Default Project Settings:
-
-- Build Command: `npm run vercel-build` or `npm run build`
-- Development Command: None
-- Install Command: `yarn install`, `pnpm install`, `npm install`, or `bun install`
-- Output Directory: `public` if it exists, or `.`
 Linked to mgnlias-projects/erc8004-guardian-mvp (created .vercel and added it to .gitignore)
-> Connecting GitHub repository: https://github.com/mgnlia/erc8004-guardian-mvp
-> Connected
 Deploying mgnlias-projects/erc8004-guardian-mvp
-Uploading [--------------------] (0.0B/10.4KB)
-Uploading [======--------------] (3.3KB/10.4KB)
-Uploading [===========---------] (6.1KB/10.4KB)
-Uploading [================----] (8.4KB/10.4KB)
-Uploading [====================] (10.4KB/10.4KB)
-Inspect: https://vercel.com/mgnlias-projects/erc8004-guardian-mvp/95ffURGZykswbzzBpyQJy4e9y4B8 [1s]
-Production: https://erc8004-guardian-lhxfizarj-mgnlias-projects.vercel.app [1s]
-https://erc8004-guardian-lhxfizarj-mgnlias-projects.vercel.appBuilding...
+Uploading [--------------------] (0.0B/772B)
+Uploading [====================] (772.0B/772B)
+Inspect: https://vercel.com/mgnlias-projects/erc8004-guardian-mvp/GA6VsBSmL5v7eXcso7Koojncjtjo [2s]
+Production: https://erc8004-guardian-d2cqcqz6i-mgnlias-projects.vercel.app [2s]
+https://erc8004-guardian-d2cqcqz6i-mgnlias-projects.vercel.appBuilding...
 Building...
 Building: Running build in Washington, D.C., USA (East) – iad1
 Building: Build machine configuration: 2 cores, 8 GB
 Building: Retrieving list of deployment files...
 Building: Previous build caches not available.
-Building: Downloading 7 deployment files...
+Building: Downloading 9 deployment files...
 Building: Running "vercel build"
 Building: Vercel CLI 50.18.2
-Building: Build Completed in /vercel/output [21ms]
+Building: Build Completed in /vercel/output [22ms]
 Building: Deploying outputs...
-[2K[1A[2K[GProduction: https://erc8004-guardian-lhxfizarj-mgnlias-projects.vercel.app [7s]
+[2K[1A[2K[GProduction: https://erc8004-guardian-d2cqcqz6i-mgnlias-projects.vercel.app [9s]
 Completing...
-Aliased: https://erc8004-guardian-mvp.vercel.app [7s]
+Aliased: https://erc8004-guardian-mvp.vercel.app [10s]
