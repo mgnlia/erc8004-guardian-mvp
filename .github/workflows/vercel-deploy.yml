@@ -5,6 +5,8 @@ on:
     branches: [main]
     paths-ignore:
       - "DEPLOYMENT_URL.txt"
+      - "DEPLOYMENT_STATUS.txt"
+      - "DEPLOYMENT_LOG.txt"
   workflow_dispatch:
 
 permissions:
@@ -28,39 +30,57 @@ jobs:
       - name: Deploy to Vercel (production)
         id: vercel
         shell: bash
+        continue-on-error: true
         env:
           SECRET_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VAR_TOKEN: ${{ vars.VERCEL_TOKEN }}
         run: |
-          set -euo pipefail
+          set -uo pipefail
 
-          TOKEN="${SECRET_TOKEN}"
+          echo "run_id=${GITHUB_RUN_ID}" > DEPLOYMENT_STATUS.txt
+          echo "run_attempt=${GITHUB_RUN_ATTEMPT}" >> DEPLOYMENT_STATUS.txt
+          : > DEPLOYMENT_LOG.txt
+
+          TOKEN="${SECRET_TOKEN:-}"
           if [ -z "$TOKEN" ]; then
-            TOKEN="${VAR_TOKEN}"
+            TOKEN="${VAR_TOKEN:-}"
           fi
 
           if [ -z "$TOKEN" ]; then
-            echo "VERCEL_TOKEN is missing in repository secrets/variables." >&2
+            echo "status=failed" >> DEPLOYMENT_STATUS.txt
+            echo "reason=missing_vercel_token" >> DEPLOYMENT_STATUS.txt
+            echo "VERCEL_TOKEN is missing in repository secrets/variables." | tee -a DEPLOYMENT_LOG.txt
             exit 1
           fi
 
-          DEPLOY_OUTPUT=$(vercel deploy --prod --yes --token "$TOKEN" --name erc8004-guardian-mvp 2>&1 | tee /tmp/vercel-deploy.log)
+          DEPLOY_OUTPUT=$(vercel deploy --prod --yes --token "$TOKEN" --name erc8004-guardian-mvp 2>&1 | tee -a DEPLOYMENT_LOG.txt)
           DEPLOY_URL=$(echo "$DEPLOY_OUTPUT" | grep -Eo 'https://[a-zA-Z0-9.-]+\.vercel\.app' | tail -n 1 || true)
 
           if [ -z "$DEPLOY_URL" ]; then
-            echo "Failed to capture deployment URL from Vercel output." >&2
-            cat /tmp/vercel-deploy.log >&2
+            echo "status=failed" >> DEPLOYMENT_STATUS.txt
+            echo "reason=no_url_detected" >> DEPLOYMENT_STATUS.txt
+            echo "No deployment URL detected in Vercel output." | tee -a DEPLOYMENT_LOG.txt
             exit 1
           fi
 
           echo "$DEPLOY_URL" > DEPLOYMENT_URL.txt
+          echo "status=success" >> DEPLOYMENT_STATUS.txt
+          echo "url=$DEPLOY_URL" >> DEPLOYMENT_STATUS.txt
           echo "url=$DEPLOY_URL" >> "$GITHUB_OUTPUT"
 
-      - name: Commit deployment URL
+      - name: Commit deployment artifacts
+        if: always()
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "chore: update Vercel production URL [skip ci]"
-          file_pattern: DEPLOYMENT_URL.txt
+          commit_message: "chore: update deployment artifacts [skip ci]"
+          file_pattern: DEPLOYMENT_URL.txt DEPLOYMENT_STATUS.txt DEPLOYMENT_LOG.txt
+
+      - name: Fail workflow if deployment failed
+        if: steps.vercel.outcome != 'success'
+        run: |
+          echo "Deploy step failed. See DEPLOYMENT_STATUS.txt and DEPLOYMENT_LOG.txt committed to repository."
+          exit 1
 
       - name: Print deployment URL
+        if: steps.vercel.outcome == 'success'
         run: echo "Deployed URL => ${{ steps.vercel.outputs.url }}"
