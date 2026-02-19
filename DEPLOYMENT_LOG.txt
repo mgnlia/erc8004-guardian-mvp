@@ -1,0 +1,38 @@
+Vercel CLI 50.20.0
+> NOTE: The Vercel CLI now collects telemetry regarding usage of the CLI.
+> This information is used to shape the CLI roadmap and prioritize features.
+> You can learn more, including how to opt-out if you'd not like to participate in this program, by visiting the following URL:
+> https://vercel.com/docs/cli/about-telemetry
+Loading scopes…
+Searching for existing projects…
+> No framework detected. Default Project Settings:
+
+- Build Command: `npm run vercel-build` or `npm run build`
+- Development Command: None
+- Install Command: `yarn install`, `pnpm install`, `npm install`, or `bun install`
+- Output Directory: `public` if it exists, or `.`
+Linked to mgnlias-projects/erc8004-guardian-mvp (created .vercel and added it to .gitignore)
+> Connecting GitHub repository: https://github.com/mgnlia/erc8004-guardian-mvp
+> Connected
+Deploying mgnlias-projects/erc8004-guardian-mvp
+Uploading [--------------------] (0.0B/10.4KB)
+Uploading [======--------------] (3.3KB/10.4KB)
+Uploading [===========---------] (6.1KB/10.4KB)
+Uploading [================----] (8.4KB/10.4KB)
+Uploading [====================] (10.4KB/10.4KB)
+Inspect: https://vercel.com/mgnlias-projects/erc8004-guardian-mvp/95ffURGZykswbzzBpyQJy4e9y4B8 [1s]
+Production: https://erc8004-guardian-lhxfizarj-mgnlias-projects.vercel.app [1s]
+https://erc8004-guardian-lhxfizarj-mgnlias-projects.vercel.appBuilding...
+Building...
+Building: Running build in Washington, D.C., USA (East) – iad1
+Building: Build machine configuration: 2 cores, 8 GB
+Building: Retrieving list of deployment files...
+Building: Previous build caches not available.
+Building: Downloading 7 deployment files...
+Building: Running "vercel build"
+Building: Vercel CLI 50.18.2
+Building: Build Completed in /vercel/output [21ms]
+Building: Deploying outputs...
+[2K[1A[2K[GProduction: https://erc8004-guardian-lhxfizarj-mgnlias-projects.vercel.app [7s]
+Completing...
+Aliased: https://erc8004-guardian-mvp.vercel.app [7s]

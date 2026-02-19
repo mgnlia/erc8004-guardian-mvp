@@ -1,0 +1,5 @@
+run_id=22197655175
+run_attempt=1
+warn=using_fallback_token
+status=success
+url=https://erc8004-guardian-mvp.vercel.app
