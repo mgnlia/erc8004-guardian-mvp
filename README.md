@@ -28,3 +28,7 @@ python -m http.server 8080
 
 - This is a proof-of-concept for rapid submission scaffolding.
 - Replace the drawdown heuristic with real risk models and on-chain telemetry for production/hackathon final submission.
+
+## Ops
+
+- Vercel production deployments are automated via GitHub Actions on push to `main`.
