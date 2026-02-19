@@ -7,21 +7,21 @@ Loading scopes…
 Searching for existing projects…
 Linked to mgnlias-projects/erc8004-guardian-mvp (created .vercel and added it to .gitignore)
 Deploying mgnlias-projects/erc8004-guardian-mvp
-Uploading [--------------------] (0.0B/772B)
-Uploading [====================] (772.0B/772B)
-Inspect: https://vercel.com/mgnlias-projects/erc8004-guardian-mvp/GA6VsBSmL5v7eXcso7Koojncjtjo [2s]
-Production: https://erc8004-guardian-d2cqcqz6i-mgnlias-projects.vercel.app [2s]
-https://erc8004-guardian-d2cqcqz6i-mgnlias-projects.vercel.appBuilding...
+Uploading [--------------------] (0.0B/1.6KB)
+Uploading [====================] (1.6KB/1.6KB)
+Inspect: https://vercel.com/mgnlias-projects/erc8004-guardian-mvp/9ZSGZcMq1b3yy6Mrv9bRHp9bgwLf [2s]
+Production: https://erc8004-guardian-9ua973x4d-mgnlias-projects.vercel.app [2s]
+https://erc8004-guardian-9ua973x4d-mgnlias-projects.vercel.appBuilding...
 Building...
 Building: Running build in Washington, D.C., USA (East) – iad1
 Building: Build machine configuration: 2 cores, 8 GB
 Building: Retrieving list of deployment files...
 Building: Previous build caches not available.
-Building: Downloading 9 deployment files...
+Building: Downloading 13 deployment files...
 Building: Running "vercel build"
 Building: Vercel CLI 50.18.2
-Building: Build Completed in /vercel/output [22ms]
+Building: Build Completed in /vercel/output [26ms]
 Building: Deploying outputs...
-[2K[1A[2K[GProduction: https://erc8004-guardian-d2cqcqz6i-mgnlias-projects.vercel.app [9s]
+[2K[1A[2K[GProduction: https://erc8004-guardian-9ua973x4d-mgnlias-projects.vercel.app [12s]
 Completing...
-Aliased: https://erc8004-guardian-mvp.vercel.app [10s]
+Aliased: https://erc8004-guardian-mvp.vercel.app [14s]
