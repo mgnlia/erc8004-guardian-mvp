@@ -15,6 +15,8 @@
 
       <section class="card">
         <h2>Risk Simulator</h2>
+        <p id="modelInfo" class="subtitle"></p>
+
         <label for="capital">Initial Capital (USDC)</label>
         <input id="capital" type="number" value="10000" min="100" step="100" />
 
@@ -33,7 +35,7 @@
       </section>
 
       <section class="card">
-        <h2>Constraint Report (ERC-8004-style attestation)</h2>
+        <h2>ERC-8004 Attestation (with simulated on-chain write)</h2>
         <pre id="attestation"></pre>
       </section>
     </main>
